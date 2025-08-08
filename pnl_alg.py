@@ -65,8 +65,8 @@ def total_pnl(H,W,D,data):
                         pnl = pnl + prices[j-1]
                         break
                     elif H_secs == (dates[len(dates) -1] - dates[i+1]).total_seconds():
-                            pnl = pnl + prices[len(prices) - 1]
-                            break
+                        pnl = pnl + prices[len(prices) - 1]
+                        break
             
             elif last_trade_time != 0:
                 W_secs = (dates[i+1] - last_trade_time).total_seconds()
