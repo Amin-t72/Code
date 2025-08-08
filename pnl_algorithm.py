@@ -47,7 +47,7 @@ def pnl(H,W,D, data):
 
     for i in range(len(dates) - 1):                                                    
 
-        d = ((all_prices[i+1] - all_prices[i]) / all_prices[i+1]) * 100            #calculating the precentage in change of the stock price compared to the previous timestamp
+        d = ((all_prices[i+1] - all_prices[i]) / all_prices[i+1]) * 100                     #calculating the precentage in change of the stock price compared to the previous timestamp
         
         
         if d >= D: 
@@ -56,7 +56,7 @@ def pnl(H,W,D, data):
                 pnl = pnl - all_prices[i+1]                                                 #update pnl by buying a stock
                 last_trade_time = dates[i+1]                                                #update last_trade_time to current time
                 
-                for j in range(len(dates)):                                            #we sell the stock after holding it for H seconds here
+                for j in range(len(dates)):                                                 #we sell the stock after holding it for H seconds here
                     H_secs = (dates[j] - dates[i+1]).total_seconds()
                     if j > i and H_secs > H:
                         pnl = pnl + all_prices[j-1]
@@ -85,7 +85,7 @@ def pnl(H,W,D, data):
             if last_trade_time == 0:                                                        #same principles, distinguish the cases where we have a last_trade_time because we have to wait W seconds before the next trade
                 pnl = pnl + all_prices[i+1]                                                 #update pnl by selling a stock
                 last_trade_time = dates[i+1]                                                #update last_trade_time to current time
-                for j in range(len(dates)):                                            #in this loop we buy the stock again after H seconds
+                for j in range(len(dates)):                                                 #in this loop we buy the stock again after H seconds
                     H_secs = (dates[j] - dates[i+1]).total_seconds()
                     if j > i and H_secs > H: 
                         pnl = pnl - all_prices[j-1]
